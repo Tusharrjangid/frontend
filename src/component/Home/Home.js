@@ -4,8 +4,20 @@ import * as THREE from "three"
 import moonImage from "../../Images/moon.jpg"
 import venusImage from "../../Images/venus.jpg"
 import spaceImage from "../../Images/space.jpg"
-import Typography  from '@mui/material/Typography'
+import Typography from '@mui/material/Typography'
 import TimeLine from "../TimeLine/TimeLine"
+import {
+  SiCplusplus,
+  SiReact,
+  SiJavascript,
+  SiMongodb,
+  SiNodedotjs,
+  SiExpress,
+  SiCss3,
+  SiHtml5,
+  SiThreedotjs
+} from "react-icons/si"
+import YoutubeCard from '../YoutubeCard/YoutubeCard'
 
 const Home = () => {
 
@@ -48,29 +60,29 @@ const Home = () => {
     scene.add(venus)
     scene.add(pointLight)
     scene.add(pointLight2)
-    scene.background=spaceTexture
+    scene.background = spaceTexture
 
-    const constSpeed=0.01
-    window.addEventListener("mousemove",(e)=>{
-      if(e.clientX <=window.innerWidth/2){
+    const constSpeed = 0.01
+    window.addEventListener("mousemove", (e) => {
+      if (e.clientX <= window.innerWidth / 2) {
         moon.rotation.x -= constSpeed
         moon.rotation.y += constSpeed
         venus.rotation.x -= constSpeed
         venus.rotation.y += constSpeed
       }
-      if(e.clientX > window.innerWidth/2){
+      if (e.clientX > window.innerWidth / 2) {
         moon.rotation.x -= constSpeed
         moon.rotation.y -= constSpeed
         venus.rotation.x -= constSpeed
         venus.rotation.y -= constSpeed
       }
-      if(e.clientY > window.innerHeight/2){
+      if (e.clientY > window.innerHeight / 2) {
         moon.rotation.x -= constSpeed
         moon.rotation.y += constSpeed
         venus.rotation.x -= constSpeed
         venus.rotation.y += constSpeed
       }
-      if(e.clientY <= window.innerHeight/2){
+      if (e.clientY <= window.innerHeight / 2) {
         moon.rotation.x -= constSpeed
         moon.rotation.y -= constSpeed
         venus.rotation.x -= constSpeed
@@ -94,40 +106,59 @@ const Home = () => {
       <canvas className="homeCanvas"></canvas>
       <div className="homeContainer">
         <Typography variant='h3'>TIMELINE</Typography>
-        <TimeLine timelines={[1,2,3,4]}/>
+        <TimeLine timelines={[1, 2, 3, 4]} />
       </div>
       <div className="homeSkills">
         <Typography variant='h3'> SKILLS</Typography>
 
         <div className="homeCubeSkills">
           <div className="homeCubeSkillsFaces homeCubeSkillsFace1">
-            <img src="https://images.unsplash.com/photo-1591154669695-5f2a8d20c089?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dXJsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" 
-            alt="Face1" />
+            <img src="https://images.unsplash.com/photo-1591154669695-5f2a8d20c089?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dXJsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              alt="Face1" />
           </div>
           <div className="homeCubeSkillsFaces homeCubeSkillsFace2">
-            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tcHV0ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" 
-            alt="Face2" />
+            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tcHV0ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+              alt="Face2" />
           </div>
           <div className="homeCubeSkillsFaces homeCubeSkillsFace3">
-            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y29tcHV0ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" 
-            alt="Face3" />
+            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y29tcHV0ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+              alt="Face3" />
           </div>
           <div className="homeCubeSkillsFaces homeCubeSkillsFace4">
-            <img src="https://images.unsplash.com/photo-1537498425277-c283d32ef9db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y29tcHV0ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" 
-            alt="Face4" />
+            <img src="https://images.unsplash.com/photo-1537498425277-c283d32ef9db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y29tcHV0ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+              alt="Face4" />
           </div>
           <div className="homeCubeSkillsFaces homeCubeSkillsFace5">
-            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvbXB1dGVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" 
-            alt="Face5" />
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvbXB1dGVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              alt="Face5" />
           </div>
           <div className="homeCubeSkillsFaces homeCubeSkillsFace6">
-            <img src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGNvbXB1dGVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" 
-            alt="Face6" />
+            <img src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGNvbXB1dGVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              alt="Face6" />
           </div>
         </div>
         <div className="cubeShadow"></div>
 
-        <div className="homeSkillsBox"></div>
+        <div className="homeskillsBox">
+          <SiCplusplus/>
+          <SiReact/>
+          <SiJavascript/>
+          <SiMongodb/>
+          <SiNodedotjs/>
+          <SiExpress/>
+          <SiCss3/>
+          <SiHtml5/>
+          <SiThreedotjs/>
+        </div>
+      </div>
+      <div className="homeYoutube">
+        <Typography variant='h3' >YOUTUBE VIDEOS</Typography>
+
+        <div className="homeYoutubeWrapper">
+          <YoutubeCard image="https://images.unsplash.com/photo-1537498425277-c283d32ef9db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y29tcHV0ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" 
+          title='Sample Video' 
+          />
+        </div>
       </div>
     </div>
   )
