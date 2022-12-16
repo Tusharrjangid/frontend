@@ -1,6 +1,10 @@
 import { Button, Typography } from '@mui/material'
 import React from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
+import { useAlert } from 'react-alert'
+import { useDispatch, useSelector } from 'react-redux'
+import { contactUs } from '../../actions/user'
 import "./Contact.css"
 
 const Contact = () => {
@@ -9,9 +13,28 @@ const Contact = () => {
     const[email,setEmail]=useState("")
     const[message,setMessage]=useState("")
 
+    const dispatch=useDispatch()
+    const alert=useAlert()
+
+    const {loading,message:alertMessage,error}=useSelector((state)=>state.update)
+
     const contactFormHandler=(e)=>{
         e.preventDefault()
+        dispatch(contactUs(name,email,message))
     }
+
+    
+    useEffect(() => {
+        if (error) {
+            alert.error(error);
+            dispatch({ type: "CLEAR_ERRORS" })
+        }
+        if (alertMessage) {
+            alert.success(alertMessage);
+            dispatch({ type: "CLEAR_MESSAGE" })
+        }
+    }, [alert, error, dispatch, alertMessage])
+
 
   return (
     <div className="contact">
@@ -43,7 +66,7 @@ const Contact = () => {
                     value={message} 
                     onChange={(e)=>setMessage(e.target.value)}></textarea>
 
-                    <Button variant='contained' type='submit' >Send</Button>
+                    <Button variant='contained' type='submit' disabled={loading} >Send</Button>
                 </form>
         </div>
     </div>

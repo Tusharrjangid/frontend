@@ -4,15 +4,27 @@ import "./Projects.css"
 import { AiOutlineProject } from "react-icons/ai"
 import { Delete } from '@mui/icons-material'
 import {FaRegSmileWink} from "react-icons/fa"
+import { useDispatch } from 'react-redux'
+import { deleteProject, getUser } from '../../actions/user'
 
-const ProjectCard = ({
+export const ProjectCard = ({
     url,
     projectImage,
     projectTitle,
     description,
     technologies,
     isAdmin = false,
+    id
 }) => {
+
+    
+  const dispatch=useDispatch()
+
+  const deleteHandler= async(id)=>{
+    await dispatch(deleteProject(id))
+    dispatch(getUser())
+  }
+
     return (
         <>
             <a href={url} className="projectCard" target="blank">
@@ -27,7 +39,10 @@ const ProjectCard = ({
                 </div>
             </a>
             {isAdmin &&(
-                <Button>
+                <Button
+                style={{color:"rgba(40,40,40,0.7)"}}
+                onClick={()=>deleteHandler(id)}
+                 >  
                     <Delete/>
                 </Button>
             ) }
@@ -35,22 +50,23 @@ const ProjectCard = ({
     )
 }
 
-const Projects = () => {
+const Projects = ({projects}) => {
 
-    const projects = [1,2,3]
 
     return (
         <div className="projects">
             <Typography variant='h3' >Projects <AiOutlineProject /> </Typography>
 
             <div className="projectWrapper">
-                {projects.map((projects, index) => (
+                {projects.map((item) => (
                     <ProjectCard 
-                    url="https://github.com/Tusharrjangid"
-                    projectImage="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tcHV0ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-                    projectTitle="Sample Project"
-                    description="This is a sample project and i have developed this "
-                    technologies="Mongodb,React,NodeJs,Express"
+                    id={item._id}
+                    key={item._id}
+                    url={item.url}
+                    projectImage={item.image.url}
+                    projectTitle={item.title}
+                    description={item.description}
+                    technologies={item.techStack}
                      />
                 ))}
             </div>
